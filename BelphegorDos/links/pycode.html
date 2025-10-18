@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    
+    <title>py code</title>
+    
+    <style>
+      
+      body {
+        background-color: black;
+        color: #8B0000;
+      }
+      
+      div {
+        border: 1px solid #8B0000;
+      }
+      
+      hr {
+        border-color: #8B0000;
+      }
+      
+    </style>
+    
+  </head>
+  
+  <body>
+    <div>
+    <h1>Python Code</h1>
+    <hr>
+    <h2>advanced Calculator</h2>
+    
+    def calculator():
+    nums = []
+    print("Calculator")
+    print("back() to go back")
+    print()
+    while True:
+        while True: # ask how many values for the calculation
+            try:
+                digits = int(input("How many digits: "))
+                if type(digits) == float or digits < 0:
+                    print("Enter number that is a element of natural")
+                else:
+                    break
+            except ValueError:
+                print("Enter number thats is a element of natural")
+        for i in range(digits): # asking for the numbers
+            while True:
+                try:
+                    integer = int(input(f"num {i+1}: "))
+                    nums.append(integer)
+                    break
+                except ValueError:
+                    print("Invalid entry.")
+        while True: # asking for type of calculation
+            try:
+                choice = int(input("1 = +, 2 = -, * = 3, / = 4: "))
+                if type(choice) == float or choice > 4 or choice < 1:
+                    print("Enter 1, 2, 3, or 4")
+                else:
+                    break
+            except ValueError:
+                print("Invalid entry")
+        if choice == 1: # choice add
+            print(sum(nums))
+            nums = []
+        elif choice == 2: # choice minus
+            answer = nums[0]
+            for i in range(len(nums)-1):
+                answer -= nums[i+1]
+            print(answer)
+            answer = 0
+            nums = []
+        elif choice == 3: # choice multiply
+            answer = nums[0]
+            for i in range(len(nums)-1):
+                answer *= nums[i+1]
+            print(answer)
+            answer = 0
+            nums = []
+        elif choice == 4: # choice divid
+            answer = nums[0]
+            for i in range(len(nums)-1):
+                answer /= nums[i+1]
+            print(answer)
+            answer = 0
+            nums = []
+    calculator()
+     
+     <hr>
+     
+     <h2>Login</h2>
+     
+    account_info = {}
+    def make_account():
+        while True: # make account w/ data validatin loops
+            account_name = input("Account name-> ")
+            if len(account_name) > 25 or account_name[0].isdigit() or len(account_name) < 3:
+                print("Name needs to be >25 and <3 charaters, needs and needs to start with letter")
+            if account_name in account_info:
+                print("Account name already taken")
+                continue
+            else:
+                while True:
+                    account_pass = input("Account password-> ")
+                    if account_pass.find(" ") != -1 or len(account_pass) < 5:
+                        print("Pass needs to be >5 charaters, and no spaces allowed.")
+                    else:
+                        account_info[account_name] = account_pass
+                        print(f"Account: {account_name} made!")
+                        break
+            while True: # new account or login
+                choice_one = input("create new account? Y/N ->")
+                if choice_one.lower() == "n":
+                    while True: # hide info or no
+                        hide_data = input("hide account info? ")
+                        if hide_data.lower() == "yes" or hide_data.lower() == "y" or hide_data.lower() == "sure":
+                            for i in range(13000):
+                                print(f"num {i}_>hiding data loading* ")
+                            break
+                        elif hide_data.lower() == "n" or hide_data.lower() == "no" or hide_data.lower() == "nah":
+                            break
+                        else:
+                            print("Enter yes or no")
+                    break
+                break
+            if choice_one.lower() == "n":
+                login()
+            print()
+
+    def login():
+        print("Login; ")
+        print()
+        while True: # log into account from account_info
+            find_account_name = input("Account name-> ")
+            find_account_pass = input("Account password-> ")
+            if find_account_name in account_info:
+                if find_account_pass == account_info[find_account_name]:
+                    break
+                else:
+                    print("Username or password incorrect")
+            else:
+                print("Username or password incorrect")
+        print(f"logged into {find_account_name} succsessfully!")
+        print()
+        logged_in_activites()
+
+    def logged_in_activites():
+        print("0) to show options")
+        username = "userDefault"
+        while True:
+            print()
+            try:
+                activite_choice = int(input(f"{username}> "))
+            except ValueError:
+                print(f"Input command `{activite_choice}` not found")
+            if activite_choice == 0:
+                print("1) make new account")
+                print("2) log into account")
+                print("3) message account")
+                print("4) notepad")
+                print("5) calculator")
+                print("6) find char in string")
+                print("7) change display name")
+                print("8) change user name")
+                print("9) change pass word")
+                print("10) account settings")
+            elif activite_choice == 1:
+                make_account()
+            elif activite_choice == 2:
+                login()
+    make_account()
+    <div>
+    
+  </body>
+
+</html>
